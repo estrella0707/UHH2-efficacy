@@ -9,7 +9,7 @@ Study 1: the phenomenon
 
 # FUNCTION
 def creating_session(subsession):
-    treatment_cycle = itertools.cycle(['crime', 'cancer', 'neutral'])
+    treatment_cycle = itertools.cycle(['crime', 'neutral'])
     for player in subsession.get_players():
         player.treatment = next(treatment_cycle)
 
@@ -104,7 +104,6 @@ class Player(BasePlayer):
     )
     stand = models.IntegerField(choices=range(1, 8))
     crime_worry = models.IntegerField(choices=range(1, 8))
-    cancer_worry = models.IntegerField(choices=range(1, 8))
     vote = models.BooleanField(
         widget=widgets.RadioSelect,
         label='Did you vote in the last general election?',
@@ -146,7 +145,6 @@ class Player(BasePlayer):
 
     # Manipulation check question
     control_crime = models.IntegerField(choices=range(1, 8), blank=True)
-    control_cancer = models.IntegerField(choices=range(1, 8), blank=True)
     scared = likert1('Scared')
     nervous = likert1('Nervous')
     calm = likert1('Calm')
@@ -201,10 +199,6 @@ class Player(BasePlayer):
         label='Have you or your close family experienced burglary in your life? (Optional)',
         blank=True
     )
-    expcancer = models.BooleanField(
-        label='Have you or your close family experienced cancer in your life? (Optional)',
-        blank=True
-    )
     believe = models.BooleanField(blank=True, initial=0)
     against = models.BooleanField(blank=True, initial=0)
     conform = models.BooleanField(blank=True, initial=0)
@@ -239,7 +233,7 @@ class ACvideo(Page):
             player.aqvideo = 1
 
 
-class ACvideoFail(Page):
+class ACvideofail(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.aqvideo != 1
@@ -249,7 +243,7 @@ class Demographics(Page):
     form_model = 'player'
     form_fields = ['age', 'gender', 'education', 'employ', 'income',
                    'region', 'origin_father', 'origin_mother', 'stand',
-                   'crime_worry', 'cancer_worry', 'vote', 'vote_yes', 'vote_no',
+                   'crime_worry', 'vote', 'vote_yes', 'vote_no',
                    'immi_familiar', 'immi_attitude']
 
 
@@ -258,7 +252,6 @@ class Info1(Page):
     def vars_for_template(player):
         image = {
             'crime': 'crime/Slide1.JPG',
-            'cancer': 'cancer/Slide1.JPG',
             'neutral': 'sunlight/Slide1.JPG'
         }
         return {
@@ -271,7 +264,6 @@ class Info2(Page):
     def vars_for_template(player):
         image = {
             'crime': 'crime/Slide2.JPG',
-            'cancer': 'cancer/Slide2.JPG',
             'neutral': 'sunlight/Slide2.JPG'
         }
         return {
@@ -297,8 +289,6 @@ class Info3(Page):
 
         if player.treatment == 'crime':
             folder = 'crime'
-        elif player.treatment == 'cancer':
-            folder = 'cancer'
         else:
             folder = 'sunlight'
 
@@ -324,7 +314,7 @@ class Emotion(Page):
 
 class Control(Page):
     form_model = 'player'
-    form_fields = ['control_crime', 'control_cancer']
+    form_fields = ['control_crime']
 
 
 class Postbelief(Page):
@@ -334,7 +324,7 @@ class Postbelief(Page):
 
 class Feedback1(Page):
     form_model = 'player'
-    form_fields = ['aq', 'purpose', 'feedback', 'AIuse', 'expcrime', 'expcancer']
+    form_fields = ['aq', 'purpose', 'feedback', 'AIuse', 'expcrime']
 
 
 class Feedback2(Page):
@@ -352,7 +342,7 @@ class Debrief1(Page):
 class Debrief2(Page):
     @staticmethod
     def is_displayed(player: Player):
-        return player.treatment == 'cancer' or player.treatment == 'crime'
+        return player.treatment == 'crime'
 
 
 class BonusFeedback(Page):
@@ -366,7 +356,7 @@ class ProlificCompletion(Page):
 page_sequence = [
     Introduction, Consent,
     ACvideo,  # video attention check for bot detection
-    ACvideoFail,  # dead end for participants who failed the bot check twice
+    ACvideofail,  # dead end for participants who failed the bot check twice
     Demographics,
     Info1, Info2, Info3,   # information slides
     Emotion,  # encourage/discourage

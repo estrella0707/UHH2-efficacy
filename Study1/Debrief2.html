@@ -7,7 +7,6 @@ Debrief
 {{ endblock }}
 
 {{ block content }}
-{% if player.treatment == 'crime' %}
 <p>If you are interested in how the probability that your household will experience a burglary in the next 20 years is calculated, you can send us a message via Prolific.</p>
 <p>Below are some effective preventive measures, according to academic and policy research:</p>
 <div class="container mt-4">
@@ -24,11 +23,6 @@ Debrief
 <i>References:<br>
     1. Tseloni, A., Thompson, R., Grove, L., Tilley, N., & Farrell, G. (2017). The effectiveness of burglary security devices. Security Journal, 30(2), 646-664.<br>
     2. Bennett, T., Holloway, K., & Farrington, D. (2008). The effectiveness of neighborhood watch. Campbell systematic reviews, 4(1), 1-46.</i><br>
-
-{% elif player.treatment == 'cancer' %}
-<p>If you are interested in how the probability of being diagnosed with cancer in the next 20 years is calculated, you can send us a message via Prolific.</p>
-<p>Please note that the probability that you were presented with was only the average risk in your region. Your personal risk can be estimated much more precisely by your doctor who knows age, general health, smoking habits, eating habits, parents’ health etc. Hence, it can diverge a lot from the estimate we have shown you.</p>
-{% endif %}
 
 <br>
 
