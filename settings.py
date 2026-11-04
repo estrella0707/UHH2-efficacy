@@ -3,9 +3,9 @@ from os import environ
 
 SESSION_CONFIGS = [
     dict(
-        name='Pilot4UK',
-        display_name="Pilot4UK",
-        app_sequence=['Pilot4UK'],
+        name='Study3',
+        display_name="Study3",
+        app_sequence=['Study3'],
         num_demo_participants=20,
     ),
     dict(
