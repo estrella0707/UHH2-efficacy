@@ -352,16 +352,16 @@ class Info3(Page):
     @staticmethod
     def vars_for_template(player):
         image = {
-            'North East (England)': 'Slide3.PNG',
-            'North West (England)': 'Slide4.PNG',
-            'Yorkshire and The Humber (England)': 'Slide5.PNG',
-            'East Midlands (England)': 'Slide6.PNG',
-            'West Midlands (England)': 'Slide7.PNG',
-            'East (England)': 'Slide8.PNG',
-            'London (England)': 'Slide9.PNG',
-            'South East (England)': 'Slide10.PNG',
-            'South West (England)': 'Slide11.PNG',
-            'Wales': 'Slide12.PNG',
+            'North East (England)': 'crime/Slide3.JPG',
+            'North West (England)': 'crime/Slide4.JPG',
+            'Yorkshire and The Humber (England)': 'crime/Slide5.JPG',
+            'East Midlands (England)': 'crime/Slide6.JPG',
+            'West Midlands (England)': 'crime/Slide7.JPG',
+            'East (England)': 'crime/Slide8.JPG',
+            'London (England)': 'crime/Slide9.JPG',
+            'South East (England)': 'crime/Slide10.JPG',
+            'South West (England)': 'crime/Slide11.JPG',
+            'Wales': 'crime/Slide12.JPG',
         }
         return {
             'image': image.get(player.region),
@@ -376,8 +376,8 @@ class Info4(Page):
     @staticmethod
     def vars_for_template(player):
         image = {
-            'high': 'Slide13.PNG',
-            'low': 'Slide15.PNG',
+            'high': 'crime/Slide13.JPG',
+            'low': 'crime/Slide15.JPG',
         }
         return {
             'image': image.get(player.treatment),
@@ -392,8 +392,8 @@ class Info5(Page):
     @staticmethod
     def vars_for_template(player):
         image = {
-            'high': 'Slide14.PNG',
-            'low': 'Slide16.PNG',
+            'high': 'crime/Slide14.JPG',
+            'low': 'crime/Slide16.JPG',
         }
         return {
             'image': image.get(player.treatment),

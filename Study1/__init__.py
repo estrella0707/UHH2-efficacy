@@ -144,7 +144,7 @@ class Player(BasePlayer):
     )
 
     # Manipulation check question
-    control_crime = models.IntegerField(choices=range(1, 8), blank=True)
+    control_crime = models.IntegerField(choices=range(1, 8))
     scared = likert1('Scared')
     nervous = likert1('Nervous')
     calm = likert1('Calm')
@@ -343,10 +343,6 @@ class Debrief2(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.treatment == 'crime'
-
-
-class BonusFeedback(Page):
-    pass
 
 
 class ProlificCompletion(Page):
