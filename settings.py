@@ -9,6 +9,12 @@ SESSION_CONFIGS = [
         num_demo_participants=20,
     ),
     dict(
+        name='Study2',
+        display_name="Study2",
+        app_sequence=['Study2'],
+        num_demo_participants=20,
+    ),
+    dict(
         name='Study1',
         display_name="Study1",
         app_sequence=['Study1'],
