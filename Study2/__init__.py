@@ -127,6 +127,14 @@ class Player(BasePlayer):
 
     # Manipulation check question
     control_crime = models.IntegerField(choices=range(1, 8))
+    scared = likert1('Scared')
+    nervous = likert1('Nervous')
+    calm = likert1('Calm')
+    relaxed = likert1('Relaxed')
+    encouraged = likert1('Encouraged')
+    discouraged = likert1('Discouraged')
+    angry = likert1('Angry')
+    joyful = likert1('Joyful')
 
     # Attention check question
     aq = models.BooleanField(
@@ -245,6 +253,18 @@ class Control(Page):
     form_fields = ['control_crime']
 
 
+class Emotion(Page):
+    form_model = 'player'
+
+    @staticmethod
+    def get_form_fields(player: Player):
+        import random
+        survey = ['scared', 'nervous', 'discouraged', 'encouraged', 'calm',
+                  'relaxed', 'angry', 'joyful']
+        random.shuffle(survey)
+        return survey
+
+
 class Feedback1(Page):
     form_model = 'player'
     form_fields = ['aq', 'purpose', 'AIuse', 'expcrime', 'drug_neighbor', 'drug_city']
@@ -274,7 +294,7 @@ page_sequence = [
     ACvideofail,  # dead end for participants who failed the bot check twice
     Demographics,
     Info1, Info2, Info3, Info4,   # information slides
-    Control,  # perceived control
+    Control, Emotion,
     Feedback1, Feedback2,
     Debrief, ProlificCompletion
 ]
