@@ -9,19 +9,19 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'likert.css' %}">
 
-<b>To what extent do you feel enabled to prevent yourself from being burgled? </b>
+<b>In general, how much control do you feel you have over what happens in your life?</b>
 <div class="likert-line">
     <span class="question-label"></span>
     <span class="end-label">Not at all</span>
     <div class="likert-scale">
         {% for i in "1234567" %}
-        <input type="radio" name="control_crime" id="control_crime{{ i }}" value="{{ i }}">
-        <label for="control_crime{{ i }}"></label>
+        <input type="radio" name="control_overall" id="control_overall{{ i }}" value="{{ i }}">
+        <label for="control_overall{{ i }}"></label>
         {% endfor %}
     </div>
     <span class="end-label">Completely</span>
 </div>
-{{ formfield_errors 'control_crime' }}
+{{ formfield_errors 'control_overall' }}
 <br>
 
 {{ next_button }}

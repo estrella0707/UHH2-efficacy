@@ -126,7 +126,7 @@ class Player(BasePlayer):
     )
 
     # Manipulation check question
-    control_crime = models.IntegerField(choices=range(1, 8))
+    control_overall = models.IntegerField(choices=range(1, 8))
     scared = likert1('Scared')
     nervous = likert1('Nervous')
     calm = likert1('Calm')
@@ -240,8 +240,24 @@ class Info4(Page):
     @staticmethod
     def vars_for_template(player):
         image = {
-            'blame': 'crime/blame.jpg',
-            'nonblame': 'crime/nonblame.jpg'
+            'blame': 'crime/blame1.jpg',
+            'nonblame': 'crime/nonblame1.jpg'
+        }
+        return {
+            'image': image.get(player.treatment),
+        }
+
+
+class Info5(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.treatment == 'blame' or player.treatment == 'nonblame'
+
+    @staticmethod
+    def vars_for_template(player):
+        image = {
+            'blame': 'crime/blame2.jpg',
+            'nonblame': 'crime/nonblame2.jpg'
         }
         return {
             'image': image.get(player.treatment),
@@ -250,7 +266,7 @@ class Info4(Page):
 
 class Control(Page):
     form_model = 'player'
-    form_fields = ['control_crime']
+    form_fields = ['control_overall']
 
 
 class Emotion(Page):
@@ -293,7 +309,7 @@ page_sequence = [
     ACvideo,  # video attention check for bot detection
     ACvideofail,  # dead end for participants who failed the bot check twice
     Demographics,
-    Info1, Info2, Info3, Info4,   # information slides
+    Info1, Info2, Info3, Info4, Info5,   # information slides
     Control, Emotion,
     Feedback1, Feedback2,
     Debrief, ProlificCompletion
