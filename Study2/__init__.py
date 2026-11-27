@@ -240,8 +240,8 @@ class Info4(Page):
     @staticmethod
     def vars_for_template(player):
         image = {
-            'blame': 'crime/blame1.jpg',
-            'nonblame': 'crime/nonblame1.jpg'
+            'blame': 'crime/blame1.JPG',
+            'nonblame': 'crime/nonblame1.JPG'
         }
         return {
             'image': image.get(player.treatment),
@@ -256,8 +256,8 @@ class Info5(Page):
     @staticmethod
     def vars_for_template(player):
         image = {
-            'blame': 'crime/blame2.jpg',
-            'nonblame': 'crime/nonblame2.jpg'
+            'blame': 'crime/blame2.JPG',
+            'nonblame': 'crime/nonblame2.JPG'
         }
         return {
             'image': image.get(player.treatment),
